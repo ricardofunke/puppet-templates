@@ -38,7 +38,7 @@
 
 class liferay(
     $http_server             = 'http://192.168.110.251',
-    $version                 = '@@LRVER',
+    $version                 = '@@LRVER@@',
     $app_server              = '@@AS@@',
     $app_version             = '7.0.62',
     $patch                   = '@@PATCH@@',
