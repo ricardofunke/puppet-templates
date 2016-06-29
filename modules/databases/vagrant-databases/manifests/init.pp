@@ -1,6 +1,6 @@
-# == Class: liferay
+# == Class: databases
 #
-# Full description of class liferay here.
+# Full description of class databases here.
 #
 # === Parameters
 #
@@ -23,7 +23,7 @@
 #
 # === Examples
 #
-#  class { 'liferay':
+#  class { 'databases':
 #    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
 #  }
 #
@@ -35,24 +35,7 @@
 #
 # Copyright 2016 Your name here, unless otherwise noted.
 #
+class databases {
 
-class liferay(
-    $http_server             = 'http://192.168.110.251',
-    $version                 = '@@LRVER@@',
-    $app_server              = '@@AS@@',
-    $app_version             = '7.1.1',
-    $patch                   = '@@PATCH@@',
-    $patching_tool_version   = '1.0.23',
-    $db_type                 = 'postgresql',
-)
-{
-
-    require java
-    
-    Class['liferay::config'] -> Class['liferay::install'] -> Class['liferay::run'] 
-    
-    include liferay::config
-    include liferay::install
-    include liferay::run
 
 }

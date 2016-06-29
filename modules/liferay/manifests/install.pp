@@ -47,6 +47,7 @@ class liferay::install {
     }
     
     file { "${liferay::config::liferay_home}/deploy":
+        require =>  Exec['unzipLiferay'],
 	ensure	=>  directory,
         owner   =>  'vagrant',
     }
@@ -82,5 +83,20 @@ class liferay::install {
         command =>  "bash patching-tool.sh revert && bash patching-tool.sh download ${liferay::patch} && bash patching-tool.sh install",
         cwd     =>  "${liferay::config::liferay_home}/patching-tool",
 	user	=>  'vagrant',
+    }
+    exec {'downloadDriver':
+        require =>  Exec['unzipLiferay'],
+        path    =>  '/bin:/usr/bin',
+        command =>  "wget ${liferay::http_server}/drivers/${liferay::db_type}/${liferay::config::db_driver_name} -P /tmp/",
+        creates =>  "/tmp/${liferay::config::db_driver_name}}",
+        user    =>  'vagrant',
+#        onlyif  =>  "test ! -f ${db_driver_home}/${liferay::config::db_driver_name}" 
+    } 
+    exec{'configureDriver':
+        require =>  Exec['downloadDriver'],
+        path    =>  '/bin:/usr/bin',
+        command =>  "mv /tmp/${liferay::config::db_driver_name} ${liferay::config::db_driver_home} && ${liferay::config::configure_db}",
+        onlyif  =>  "test ! -f ${db_driver_home}/${liferay::config::db_driver_name}",
+        user    =>  'vagrant',        
     }
 }  

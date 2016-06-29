@@ -6,6 +6,31 @@ class liferay::config {
     $license         =   "license-portaldevelopment-developer-cluster-${liferay::version}-liferaycom.xml"
     $url_patch       =   "download.url=${liferay::http_server}/private/ee/fix-packs/"
 
+    case $liferay::db_type {
+        'mysql':{
+            $db_driver_name = 'mysql.jar'
+        }
+        'db2':{
+            $db_driver_name = 'db2jcc4.jar'
+        }
+        'oracle':{
+            $db_driver_name = 'ojdbc14.jar'
+        }
+        'postgresql':{
+            $db_driver_name = 'postgresql-9.4.1208.jre6.jar'
+        }
+        'sqlserver':{
+            $db_driver_name = 'sqljdbc.jar'
+        }
+        'sybase':{
+            $db_driver_name = 'mysql.jar'
+        }
+        default:{ 
+            notice ("${liferay::db_type} not supported")
+        }
+    }
+    
+    
     case $liferay::version {
         '6210':{
             case $liferay::app_server {
@@ -27,9 +52,10 @@ class liferay::config {
                 'jboss':{
                     case $liferay::app_version {
                         '7.1.1':{
-                            $bundle_liferay = 'liferay-portal-jboss-6.2-ee-sp14-20151105114451508.zip'
-                            $bundle_version = "/6.2.10.15/${bundle_liferay}"
+                            $bundle_liferay = 'liferay-portal-jboss-6.2-ee-sp1-20140204095606875.zip'
+                            $bundle_version = "/6.2.10.2/${bundle_liferay}"
                         }
+ 
                     }
                 }
                 default :{
@@ -94,9 +120,14 @@ class liferay::config {
     case $liferay::app_server {
         'tomcat':{
             $start_command = "/bin/bash -c 'CATALINA_HOME=${app_server_home} ${app_server_home}/bin/catalina.sh start'"
+            $db_driver_home = "${app_server_home}/lib/ext"
+            $configure_db   = "echo 'driver installed'"
         }
         'jboss':{
-            $start_command = "/bin/bash -c 'CATALINA_HOME=${app_server_home} ${app_server_home}/bin/standalone.sh -b 0.0.0.0"
+            $start_command = "${app_server_home}/bin/standalone.sh -b 0.0.0.0"
+            $db_driver_home = "${app_server_home}/modules/com/liferay/portal/main"
+            $configure_db   = "sed \'7a <resource-root path=\"${db_driver_name}/\" />\' ${db_driver_home}/module.xml > /tmp/test.xml && rm ${db_driver_home}/module.xml && mv /tmp/test.xml ${db_driver_home}/module.xml"  
+#            $start_command = "/bin/bash -c 'CATALINA_HOME=${app_server_home} ${app_server_home}/bin/standalone.sh -b 0.0.0.0"
         }
         default :{
             notice ("apserver not supported")
