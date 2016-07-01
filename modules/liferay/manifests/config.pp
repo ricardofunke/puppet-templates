@@ -38,11 +38,11 @@ class liferay::config {
                     case $liferay::app_version {
                         '7.0.62':{ 
                             $bundle_liferay = 'liferay-portal-tomcat-6.2-ee-sp14-20151105114451508.zip'
-                            $bundle_version = "/6.2.10.15/${bundle_liferay}" 
+                            $bundle_version = "6.2.10.15/${bundle_liferay}" 
                         }
                         '7.0.42':{ 
                             $bundle_liferay = 'liferay-portal-tomcat-6.2.10.1-ee-ga1-20131126141110470.zip' 
-                            $bundle_version = "/6.2.10.1/${bundle_liferay}" 
+                            $bundle_version = "6.2.10.1/${bundle_liferay}" 
                         }
                         default:{ 
                             notice ("${liferay::app_version} not supported")
@@ -53,7 +53,7 @@ class liferay::config {
                     case $liferay::app_version {
                         '7.1.1':{
                             $bundle_liferay = 'liferay-portal-jboss-6.2-ee-sp1-20140204095606875.zip'
-                            $bundle_version = "/6.2.10.2/${bundle_liferay}"
+                            $bundle_version = "6.2.10.2/${bundle_liferay}"
                         }
  
                     }
@@ -69,7 +69,7 @@ class liferay::config {
                     case $liferay::app_version {
                         '7.0.40':{ 
                             $bundle_liferay = 'liferay-portal-tomcat-6.1.30-ee-ga3-20130812170130063.zip'
-                            $bundle_version =  "/6.1.30/${bundle_liferay}"
+                            $bundle_version =  "6.1.30/${bundle_liferay}"
                         }
                         default:{ 
                             notice ("${liferay::app_version} not supported")
@@ -124,7 +124,7 @@ class liferay::config {
             $configure_db   = "echo 'driver installed'"
         }
         'jboss':{
-            $start_command = "${app_server_home}/bin/standalone.sh -b 0.0.0.0"
+            $start_command = "${app_server_home}/bin/standalone.sh &"
             $db_driver_home = "${app_server_home}/modules/com/liferay/portal/main"
             $configure_db   = "sed \'7a <resource-root path=\"${db_driver_name}/\" />\' ${db_driver_home}/module.xml > /tmp/test.xml && rm ${db_driver_home}/module.xml && mv /tmp/test.xml ${db_driver_home}/module.xml"  
 #            $start_command = "/bin/bash -c 'CATALINA_HOME=${app_server_home} ${app_server_home}/bin/standalone.sh -b 0.0.0.0"

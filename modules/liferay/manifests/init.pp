@@ -40,7 +40,7 @@ class liferay(
     $http_server             = 'http://192.168.110.251',
     $version                 = '@@LRVER@@',
     $app_server              = '@@AS@@',
-    $app_version             = '7.1.1',
+    $app_version             = '7.0.42',
     $patch                   = '@@PATCH@@',
     $patching_tool_version   = '1.0.23',
     $db_type                 = 'postgresql',
