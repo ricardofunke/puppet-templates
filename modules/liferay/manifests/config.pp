@@ -153,6 +153,7 @@ class liferay::config {
                             notice ("${liferay::app_version} not supported")
                         }
                     }
+                }
                 default :{
                     notice ("apserver not supported")
                 }
