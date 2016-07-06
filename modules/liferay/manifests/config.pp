@@ -11,7 +11,7 @@ class liferay::config {
             $db_driver_name = 'mysql.jar'
         }
         'db2':{
-            $db_driver_name = 'db2jcc4.jar'
+            $db_driver_name = 'db2jcc.jar'
         }
         'oracle':{
             $db_driver_name = 'ojdbc14.jar'
@@ -19,11 +19,11 @@ class liferay::config {
         'postgresql':{
             $db_driver_name = 'postgresql-9.4.1208.jre6.jar'
         }
-        'sqlserver':{
-            $db_driver_name = 'sqljdbc.jar'
+        'mssql':{
+            $db_driver_name = 'jtds.jar'
         }
         'sybase':{
-            $db_driver_name = 'mysql.jar'
+            $db_driver_name = 'jtds.jar'
         }
         default:{ 
             notice ("${liferay::db_type} not supported")
