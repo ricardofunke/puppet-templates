@@ -6,11 +6,12 @@ class liferay::run {
 #        environment  =>  "JAVA_HOME=/opt/jvm/java",
         command      =>  "${liferay::config::start_command}",
         user	     =>  'vagrant',
+        provider     => shell,
     }
 	
     notify { 'run_notification':
         require =>  Exec['liferay_start'],
         name    =>  'run notification',
-        message =>  "${liferay::config::start_command} was executed from ${liferay::config::apserver_home}",
+        message =>  "${liferay::config::start_command} was executed from ${liferay::config::app_server_home}",
     }
 }  

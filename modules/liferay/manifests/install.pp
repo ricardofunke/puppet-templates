@@ -85,7 +85,7 @@ class liferay::install {
 	user	=>  'vagrant',
     }
     exec {'downloadDriver':
-        require =>  Exec['unzipLiferay'],
+        require =>  Exec['unzipLiferay'], 
         path    =>  '/bin:/usr/bin',
         command =>  "wget ${liferay::http_server}/drivers/${liferay::db_type}/${liferay::config::db_driver_name} -P /tmp/",
         creates =>  "/tmp/${liferay::config::db_driver_name}}",
@@ -93,7 +93,7 @@ class liferay::install {
 #        onlyif  =>  "test ! -f ${db_driver_home}/${liferay::config::db_driver_name}" 
     } 
     exec{'configureDriver':
-        require =>  Exec['downloadDriver'],
+        require => [ Exec['downloadDriver'], Exec['deployLicense'] ],
         path    =>  '/bin:/usr/bin',
         command =>  "mv /tmp/${liferay::config::db_driver_name} ${liferay::config::db_driver_home} && ${liferay::config::configure_db}",
         onlyif  =>  "test ! -f ${db_driver_home}/${liferay::config::db_driver_name}",

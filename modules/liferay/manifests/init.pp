@@ -15,7 +15,7 @@
 # Here you should define a list of variables that this module would require.
 #
 # [*sample_variable*]
-#   Explanation of how this variable affects the funtion of this class and if
+#   Explanation of how this variable affects the funtion of this class and ibv f
 #   it has a default. e.g. "The parameter enc_ntp_servers must be set by the
 #   External Node Classifier as a comma separated list of hostnames." (Note,
 #   global variables should be avoided in favor of class parameters as
@@ -40,10 +40,10 @@ class liferay(
     $http_server             = 'http://192.168.110.251',
     $version                 = '@@LRVER@@',
     $app_server              = '@@AS@@',
-    $app_version             = '7.0.42',
+    $app_version             = '@@ASVER@@',
     $patch                   = '@@PATCH@@',
-    $patching_tool_version   = '1.0.23',
-    $db_type                 = 'postgresql',
+    $patching_tool_version   = '@@PTVER@@',
+    $db_type                 = '@@DB@@',
 )
 {
 

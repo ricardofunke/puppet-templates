@@ -8,7 +8,7 @@ class liferay::config {
 
     case $liferay::db_type {
         'mysql':{
-            $db_driver_name = 'mysql.jar'
+            $db_driver_name = 'mysql-connector-java-5.1.39-bin.jar'
         }
         'db2':{
             $db_driver_name = 'db2jcc4.jar'
@@ -124,7 +124,7 @@ class liferay::config {
             $configure_db   = "echo 'driver installed'"
         }
         'jboss':{
-            $start_command = "${app_server_home}/bin/standalone.sh &"
+            $start_command = "sleep 10; ${app_server_home}/bin/standalone.sh -b 0.0.0.0"
             $db_driver_home = "${app_server_home}/modules/com/liferay/portal/main"
             $configure_db   = "sed \'7a <resource-root path=\"${db_driver_name}/\" />\' ${db_driver_home}/module.xml > /tmp/test.xml && rm ${db_driver_home}/module.xml && mv /tmp/test.xml ${db_driver_home}/module.xml"  
 #            $start_command = "/bin/bash -c 'CATALINA_HOME=${app_server_home} ${app_server_home}/bin/standalone.sh -b 0.0.0.0"
