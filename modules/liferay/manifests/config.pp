@@ -14,7 +14,14 @@ class liferay::config {
             $db_driver_name = 'db2jcc.jar'
         }
         'oracle':{
-            $db_driver_name = 'ojdbc14.jar'
+            case $java::version {
+                '6':{
+                    $db_driver_name = 'ojdbc6.jar'
+                }
+                '7':{
+                    $db_driver_name = 'ojdbc7.jar'
+                }
+            }
         }
         'postgresql':{
             $db_driver_name = 'postgresql-9.4.1208.jre6.jar'
