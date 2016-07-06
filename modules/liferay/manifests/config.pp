@@ -62,7 +62,9 @@ class liferay::config {
                             $bundle_liferay = 'liferay-portal-jboss-6.2-ee-sp1-20140204095606875.zip'
                             $bundle_version = "6.2.10.2/${bundle_liferay}"
                         }
- 
+                        default:{ 
+                            notice ("${liferay::app_version} not supported")
+                        }
                     }
                 }
                 default :{
@@ -75,8 +77,19 @@ class liferay::config {
                 'tomcat':{
                     case $liferay::app_version {
                         '7.0.40':{ 
-                            $bundle_liferay = 'liferay-portal-tomcat-6.1.30-ee-ga3-20130812170130063.zip'
-                            $bundle_version =  "6.1.30/${bundle_liferay}"
+                            $bundle_liferay = 'liferay-portal-tomcat-6.1-ee-ga3-sp5-20160201142343123.zip'
+                            $bundle_version =  "6.1.30.5/${bundle_liferay}"
+                        }
+                        default:{ 
+                            notice ("${liferay::app_version} not supported")
+                        }
+                    }
+                }
+                'jboss':{
+                    case $liferay::app_version {
+                        '7.1.1':{
+                            $bundle_liferay = 'liferay-portal-jboss-6.1-ee-ga3-sp5-20160201142343123.zip'
+                            $bundle_version = "6.1.30.5/${bundle_liferay}"
                         }
                         default:{ 
                             notice ("${liferay::app_version} not supported")
@@ -93,7 +106,19 @@ class liferay::config {
                 'tomcat':{
                     case $liferay::app_version {
                         '7.0.27':{ 
-                            $bundle_version = 'none' 
+                            $bundle_version = 'liferay-portal-tomcat-6.1.20-ee-ga2-20120731110418084.zip' 
+                            $bundle_version = "6.1.20/${bundle_liferay}"
+                        }
+                        default:{ 
+                            notice ("${liferay::app_version} not supported")
+                        }
+                    }
+                }
+                'jboss':{
+                    case $liferay::app_version {
+                        '7.1.1':{
+                            $bundle_liferay = 'liferay-portal-jboss-6.1.20-ee-ga2-20120731110418084.zip'
+                            $bundle_version = "6.1.20/${bundle_liferay}"
                         }
                         default:{ 
                             notice ("${liferay::app_version} not supported")
@@ -110,13 +135,24 @@ class liferay::config {
                 'tomcat':{
                     case $liferay::app_version {
                         '7.0.25':{ 
-                            $bundle_version = 'none' 
+                            $bundle_version = 'liferay-portal-tomcat-6.1.10-ee-ga1-20120217120951450.zip' 
+                            $bundle_version = "6.1.10/${bundle_liferay}"
                         }
                         default:{ 
                             notice ("${liferay::app_version} not supported")
                         }
                     }
                 }
+                'jboss':{
+                    case $liferay::app_version {
+                        '7.0.2':{
+                            $bundle_liferay = 'liferay-portal-jboss-6.1.10-ee-ga1-20120223174854827.zip'
+                            $bundle_version = "6.1.10/${bundle_liferay}"
+                        }
+                        default:{ 
+                            notice ("${liferay::app_version} not supported")
+                        }
+                    }
                 default :{
                     notice ("apserver not supported")
                 }
