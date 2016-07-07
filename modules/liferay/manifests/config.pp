@@ -106,7 +106,7 @@ class liferay::config {
                 'tomcat':{
                     case $liferay::app_version {
                         '7.0.27':{ 
-                            $bundle_version = 'liferay-portal-tomcat-6.1.20-ee-ga2-20120731110418084.zip' 
+                            $bundle_liferay = 'liferay-portal-tomcat-6.1.20-ee-ga2-20120731110418084.zip' 
                             $bundle_version = "6.1.20/${bundle_liferay}"
                         }
                         default:{ 
@@ -135,7 +135,7 @@ class liferay::config {
                 'tomcat':{
                     case $liferay::app_version {
                         '7.0.25':{ 
-                            $bundle_version = 'liferay-portal-tomcat-6.1.10-ee-ga1-20120217120951450.zip' 
+                            $bundle_liferay = 'liferay-portal-tomcat-6.1.10-ee-ga1-20120217120951450.zip' 
                             $bundle_version = "6.1.10/${bundle_liferay}"
                         }
                         default:{ 
