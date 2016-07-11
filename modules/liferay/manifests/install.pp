@@ -23,6 +23,14 @@ class liferay::install {
         user    =>  'vagrant',
     }
 
+    exec { 'giveExecPermissions':
+        require =>  Exec['renameLiferayHome'],
+        path    =>  '/bin:/usr/bin',
+        command =>  "chmod +x ${liferay::config::app_server_home}/bin/*.sh",
+        cwd     =>  '/home/vagrant',
+        user    =>  'vagrant',
+    }
+
     file { 'removePatchingTool':
         require =>  Exec['renameLiferayHome'],
         ensure  =>  absent,
