@@ -69,7 +69,7 @@ class liferay::install {
     }
 
     file { "${liferay::config::liferay_home}/portal-ext.properties":
-	require =>  Exec['unzipLiferay'],
+	require =>  Exec['renameLiferayHome'],
 	ensure	=>  present,
 	source	=>  "/vagrant/portal-ext.properties",
 	owner	=>  'vagrant',
