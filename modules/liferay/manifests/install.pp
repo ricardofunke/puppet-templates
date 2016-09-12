@@ -98,6 +98,7 @@ class liferay::install {
         command =>  "wget ${liferay::http_server}/drivers/${liferay::db_type}/${liferay::config::db_driver_name} -P /tmp/",
         creates =>  "/tmp/${liferay::config::db_driver_name}}",
         user    =>  'vagrant',
+        unless  =>  "[[ ${liferay::db_type} == 'none' ]]",
 #        onlyif  =>  "test ! -f ${db_driver_home}/${liferay::config::db_driver_name}" 
     } 
     exec{'configureDriver':
