@@ -39,6 +39,35 @@ class liferay::config {
     
     
     case $liferay::version {
+        '7010':{
+            case $liferay::app_server {
+                'tomcat':{
+                    case $liferay::app_version {
+                        '8.0.32':{ 
+                            $bundle_liferay = 'liferay-dxp-digital-enterprise-tomcat-7.0-sp1-20161027112321352.zip'
+                            $bundle_version = "7.0.10.1/${bundle_liferay}" 
+                        }
+                        default:{ 
+                            notice ("${liferay::app_version} not supported")
+                        }
+                    }
+                }
+                'jboss':{
+                    case $liferay::app_version {
+                        '6.4':{
+                            $bundle_liferay = 'liferay-dxp-digital-enterprise-jboss-eap-6.4-7.0-sp1-20161027112321352.zip'
+                            $bundle_version = "7.0.10.1/${bundle_liferay}"
+                        }
+                        default:{ 
+                            notice ("${liferay::app_version} not supported")
+                        }
+                    }
+                }
+                default :{
+                    notice ("apserver not supported")
+                }
+            }
+        }
         '6210':{
             case $liferay::app_server {
                 'tomcat':{
