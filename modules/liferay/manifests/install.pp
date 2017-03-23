@@ -18,7 +18,7 @@ class liferay::install {
     exec { 'renameLiferayHome':
         require =>  Exec['unzipLiferay'],
         path    =>  '/bin:/usr/bin',
-        command =>  "mv liferay-portal* ${liferay::config::liferay_name}",
+        command =>  "mv liferay-* ${liferay::config::liferay_name}",
         cwd     =>  '/home/vagrant',
         user    =>  'vagrant',
     }
