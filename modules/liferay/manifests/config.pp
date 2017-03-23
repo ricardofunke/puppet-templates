@@ -54,7 +54,7 @@ class liferay::config {
                 }
                 'jboss':{
                     case $liferay::app_version {
-                        '6.4':{
+                        'eap-6.4':{
                             $bundle_liferay = 'liferay-dxp-digital-enterprise-jboss-eap-6.4-7.0-sp1-20161027112321352.zip'
                             $bundle_version = "7.0.10.1/${bundle_liferay}"
                         }
