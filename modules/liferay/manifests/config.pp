@@ -18,7 +18,7 @@ class liferay::config {
                 '6':{
                     $db_driver_name = 'ojdbc6.jar'
                 }
-                '7':{
+                '7', '8':{
                     $db_driver_name = 'ojdbc7.jar'
                 }
             }
